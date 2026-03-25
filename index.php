@@ -40,14 +40,32 @@
 <table>
 <?php
 $numero = 7;
-for ($i = 1; $i <=10; $i++) {
-	$resultat = $numero * $i ;
-    echo "<tr>";
-    echo "	<td>$numero * $i</td>";
-    echo "	<td>$resultat</td>";
-    echo "</tr>";
+
+if ($numero < 1 || $numero > 12 ) {
+    echo "<p class='error'>Error: Torna-ho a provar amb números entre 1 i 12</p>";
 }
+else {
+    echo "<h1>Taula del $numero</h1>";
+    echo "<table>";
+    echo "<tr><th>Operació</th><th>Resultat</th></tr>";
+
+    for ($i = 1; $i <=10; $i++) {
+        $resultat = $numero * $i ;
+        if ($i % 2 === 0) {
+            $class = "fila-parell";
+        }
+        else {
+            $class = "fila-senar";
+        }
+        echo "<tr class='$class'>";
+        echo "	<td>$numero * $i</td>";
+        echo "	<td>$resultat</td>";
+        echo "</tr>";
+    }
+    echo"</table>";
+}
+    
 ?>
-</table>    
+   
 </body>
 </html>
