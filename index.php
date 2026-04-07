@@ -9,7 +9,39 @@
             margin: 40px auto;
             padding: 0 20px;
         }
+        form {
+            background-color: #f9f9f9;
+            padding: 45px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            
+        }
 
+        form label {
+            font-weight: bold;
+        }
+
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            margin-left: 2px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form button {
+            background-color: #355ad3;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        form button:hover {
+            background-color: #2a47a8;
+        }
         table {
         	border-collapse: collapse;
             width: 100%;
@@ -37,34 +69,44 @@
     </style>
     </head>
 <body>
+<form method="post" action="">
+    <label>Introdueix un número (1-12):</label><br>
+    <input type="number" name="numero" min="1" max="12" required>
+    <button type="submit">Generar</button>
+</form>
+
+
 <table>
 <?php
-$numero = 7;
 
-if ($numero < 1 || $numero > 12 ) {
-    echo "<p class='error'>Error: Torna-ho a provar amb números entre 1 i 12</p>";
-}
-else {
-    echo "<h1>Taula del $numero</h1>";
-    echo "<table>";
-    echo "<tr><th>Operació</th><th>Resultat</th></tr>";
+if (isset($_POST['numero'])) {
 
-    for ($i = 1; $i <=10; $i++) {
-        $resultat = $numero * $i ;
-        if ($i % 2 === 0) {
-            $class = "fila-parell";
-        }
-        else {
-            $class = "fila-senar";
-        }
-        echo "<tr class='$class'>";
-        echo "	<td>$numero * $i</td>";
-        echo "	<td>$resultat</td>";
-        echo "</tr>";
+    $numero = (int) $_POST['numero'];
+
+    if ($numero < 1 || $numero > 12 ) {
+        echo "<p class='error'>Error: Torna-ho a provar amb números entre 1 i 12</p>";
     }
-    echo"</table>";
+    else {
+        echo "<h1>Taula del $numero</h1>";
+        echo "<table>";
+        echo "<tr><th>Operació</th><th>Resultat</th></tr>";
+
+        for ($i = 1; $i <=10; $i++) {
+            $resultat = $numero * $i ;
+            if ($i % 2 === 0) {
+                $class = "fila-parell";
+            }
+            else {
+                $class = "fila-senar";
+            }
+            echo "<tr class='$class'>";
+            echo "	<td>$numero * $i</td>";
+            echo "	<td>$resultat</td>";
+            echo "</tr>";
+        }
+        echo"</table>";
+    }
 }
-    
 ?>
    
 </body>
